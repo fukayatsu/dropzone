@@ -1354,7 +1354,9 @@
         }
       }
       for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
-        formData.append(this._getParamName(i), files[i], files[i].name);
+        if (this._getParamName(i)) {
+          formData.append(this._getParamName(i), files[i], files[i].name);
+        }
       }
       return xhr.send(formData);
     };

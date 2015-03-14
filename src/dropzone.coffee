@@ -475,7 +475,7 @@ class Dropzone extends Emitter
     maxfilesexceeded: noop
 
     maxfilesreached: noop
-    
+
     queuecomplete: noop
 
 
@@ -1017,7 +1017,7 @@ class Dropzone extends Emitter
 
       @emit "thumbnail", file, thumbnail
       callback() if callback?
-      
+
     img.onerror = callback if callback?
 
     img.src = imageUrl
@@ -1205,7 +1205,8 @@ class Dropzone extends Emitter
     # Finally add the file
     # Has to be last because some servers (eg: S3) expect the file to be the
     # last parameter
-    formData.append @_getParamName(i), files[i], files[i].name for i in [0..files.length-1]
+    for i in [0..files.length-1]
+      formData.append @_getParamName(i), files[i], files[i].name if @_getParamName(i)
 
     xhr.send formData
 
